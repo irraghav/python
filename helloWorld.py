@@ -1,8 +1,11 @@
 from getPageDOM import getRequests
 from getPageList import getList
 
-tree = getRequests("https://www.bmo.com/main/personal")
-ids = tree.xpath('//a/@data-ana')
+getURLlist = getList('./validation_sheet.xlsx')
 
-for id in ids:
-    print(id)
+for url in getURLlist:
+    tree = getRequests(url)
+    anas = tree.xpath('//a/@data-ana')
+    print(f"\n\n Tracking the following URL: {url} \n\n")
+    for ana in anas:
+        print(ana)

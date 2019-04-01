@@ -1,9 +1,12 @@
 import xlrd
 
-fname = './validation_sheet.xlsx'
+def getList(fname):
+    xlsFile = xlrd.open_workbook(fname)
+    firstSheet = xlsFile.sheet_by_index(0)
 
-xlsFile = xlrd.open_workbook(fname)
+    retVal = []
+    for cell in firstSheet.col_values(0):
+        if isinstance(cell,str) and cell:
+            retVal.append(cell)
 
-sheet_names = xlsFile.sheet_names
-
-print("Sheet Names",sheet_names())
+    return retVal           
